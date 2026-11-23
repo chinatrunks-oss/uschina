@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<meta name="description" content="USCHINA is a story-driven meme coin on Base. 52 trillion supply, fixed ERC-20, no mint, no burn, no tax. 100% of LP locked until April 10, 2027. An experiment, not a promise." />
+<link rel="icon" href="data:," />
+<title>USCHINA — An Experiment, Not a Promise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f6f1e7;
+    --bg-2:#efe7d6;
+    --surface:#fffdf7;
+    --surface-2:#fbf7ec;
+    --ink:#14202e;
+    --ink-2:#43505f;
+    --ink-3:#6d7a89;
+    --line:#ddd2ba;
+    --line-strong:#c9b98f;
+    --red:#b5341f;
+    --red-soft:#f3ddd4;
+    --gold:#9a7b2d;
+    --gold-soft:#efe3c2;
+    --navy:#16283f;
+    --navy-ink:#eef1f4;
+    --ok:#2e6b3e;
+    --radius:14px;
+    --radius-sm:9px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e141c;
+      --bg-2:#0b1017;
+      --surface:#16202d;
+      --surface-2:#131c28;
+      --ink:#edf0f3;
+      --ink-2:#b7c1cc;
+      --ink-3:#8b99a8;
+      --line:#2a3a4c;
+      --line-strong:#3d546f;
+      --red:#e0654a;
+      --red-soft:#3a241e;
+      --gold:#d3af55;
+      --gold-soft:#2e2a1a;
+      --navy:#0a1220;
+      --navy-ink:#eef1f4;
+      --ok:#7cc48d;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--red);text-underline-offset:3px}
+  a:hover{opacity:.85}
+  button,[role="button"],summary{min-height:2.75rem}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+  /* ---------- top strip ---------- */
+  .topstrip{
+    background:var(--navy);color:var(--navy-ink);
+    font-size:.82rem;
+  }
+  .topstrip .wrap{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;justify-content:space-between;padding-top:9px;padding-bottom:9px}
+  .topstrip .mono{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.02em;opacity:.92}
+  .topstrip a{color:#f0c9a0;text-decoration:none;font-weight:600}
+  .topstrip a:hover{text-decoration:underline}
+
+  /* ---------- hero ---------- */
+  .hero{padding:52px 0 8px}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:34px}
+  @media(min-width:880px){.hero-grid{grid-template-columns:1.55fr .85fr;align-items:start}}
+  .seal-row{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+  .seal{
+    width:74px;height:74px;flex:0 0 74px;border-radius:10px;
+    background:var(--red);color:#fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transform:rotate(-3deg);
+    box-shadow:0 2px 0 rgba(0,0,0,.18);
+    line-height:1.05;text-align:center;
+  }
+  .seal .s1{font-family:"Newsreader",serif;font-weight:700;font-size:1.02rem;letter-spacing:.06em}
+  .seal .s2{font-size:.62rem;letter-spacing:.32em;margin-top:4px;opacity:.92}
+  .seal .s3{font-size:.66rem;margin-top:3px;letter-spacing:.18em}
+  .chain-badges{display:flex;flex-wrap:wrap;gap:8px}
+  .badge{
+    display:inline-flex;align-items:center;gap:7px;
+    border:1px solid var(--line-strong);border-radius:999px;
+    padding:6px 13px;font-size:.8rem;font-weight:600;color:var(--ink-2);
+    background:var(--surface);
+  }
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:#2f6bd8;flex:0 0 8px}
+  .badge.red{color:var(--red);border-color:var(--red)}
+  h1{
+    font-family:"Newsreader",Georgia,"Songti SC",serif;
+    font-size:clamp(2.5rem,6.2vw,4.1rem);
+    line-height:1.04;font-weight:700;letter-spacing:-.01em;
+    margin:0 0 6px;
+  }
+  h1 .accent{color:var(--red)}
+  .hero-cn{
+    font-size:clamp(1.15rem,2.6vw,1.5rem);font-weight:600;color:var(--ink-2);
+    margin:0 0 18px;letter-spacing:.04em;
+  }
+  .lede{font-size:1.06rem;color:var(--ink-2);max-width:56ch;margin:0 0 10px}
+  .lede-cn{font-size:.95rem;color:var(--ink-3);max-width:56ch;margin:0 0 26px}
+
+  /* contract box */
+  .contract-box{
+    background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius);
+    padding:18px 18px 14px;max-width:640px;
+  }
+  .contract-box label{
+    display:block;font-size:.74rem;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:8px;
+  }
+  .addr-row{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap}
+  .addr{
+    font-family:"IBM Plex Mono",monospace;font-size:.86rem;
+    word-break:break-all;line-height:1.5;flex:1 1 260px;
+    background:var(--surface-2);border:1px dashed var(--line-strong);
+    border-radius:var(--radius-sm);padding:10px 12px;color:var(--ink);
+  }
+  .copy-btn{
+    flex:0 0 auto;cursor:pointer;border:0;border-radius:var(--radius-sm);
+    background:var(--red);color:#fff;font:inherit;font-weight:600;font-size:.9rem;
+    padding:10px 20px;min-width:118px;
+  }
+  .copy-btn:active{transform:translateY(1px)}
+  .copy-note{font-size:.8rem;color:var(--ink-3);margin:10px 0 2px}
+  .copy-note strong{color:var(--red)}
+
+  /* snapshot card */
+  .snapshot{
+    background:var(--navy);color:var(--navy-ink);border-radius:var(--radius);
+    padding:22px 22px 18px;
+  }
+  .snapshot h2{
+    font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+    color:#d8b978;margin:0 0 4px;font-family:"IBM Plex Sans",sans-serif;font-weight:700;
+  }
+  .snapshot .snap-date{font-size:.82rem;opacity:.75;margin:0 0 16px}
+  .snap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+  .snap-item .k{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+  .snap-item .v{font-family:"IBM Plex Mono",monospace;font-size:1.06rem;font-weight:600;margin-top:2px;word-break:break-all}
+  .snap-item .v small{display:block;font-size:.72rem;font-weight:400;opacity:.65;font-family:"IBM Plex Sans",sans-serif;margin-top:1px}
+  .snapshot .snap-foot{font-size:.78rem;opacity:.7;border-top:1px solid rgba(255,255,255,.16);margin-top:16px;padding-top:12px}
+  .snapshot a{color:#f0c9a0}
+
+  /* ---------- sections ---------- */
+  section{padding:44px 0 4px}
+  .sec-head{margin-bottom:20px}
+  .sec-head .num{
+    font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--red);
+    font-weight:600;letter-spacing:.1em;
+  }
+  .sec-head h2{
+    font-family:"Newsreader",Georgia,"Songti SC",serif;
+    font-size:clamp(1.6rem,3.6vw,2.15rem);font-weight:700;line-height:1.15;margin:4px 0 2px;
+  }
+  .sec-head .cn{font-size:1rem;color:var(--ink-3);font-weight:600;letter-spacing:.05em}
+  .sec-head p{color:var(--ink-2);max-width:68ch;margin:10px 0 0}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:680px){.cards{grid-template-columns:1fr 1fr}}
+  @media(min-width:980px){.cards.four{grid-template-columns:repeat(4,1fr)} .cards.three{grid-template-columns:repeat(3,1fr)}}
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;
+  }
+  .card .big{
+    font-family:"Newsreader",Georgia,serif;font-size:2rem;font-weight:700;line-height:1.05;color:var(--ink);
+  }
+  .card .big.red{color:var(--red)}
+  .card h3{margin:0 0 6px;font-size:1rem}
+  .card p{margin:0;color:var(--ink-2);font-size:.93rem}
+  .card p.cn{color:var(--ink-3);font-size:.86rem;margin-top:6px}
+  .card .tag{
+    display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--gold);background:var(--gold-soft);border-radius:5px;padding:3px 8px;margin-bottom:10px;
+  }
+
+  /* facts table */
+  .facts{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  }
+  .fact-row{display:grid;grid-template-columns:1fr;gap:2px;padding:13px 20px;border-top:1px solid var(--line)}
+  .fact-row:first-child{border-top:0}
+  @media(min-width:680px){.fact-row{grid-template-columns:220px 1fr;gap:16px}}
+  .fact-row .fk{font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);padding-top:2px}
+  .fact-row .fv{font-size:.97rem}
+  .fact-row .fv .mono{font-family:"IBM Plex Mono",monospace;font-size:.88rem;word-break:break-all}
+  .pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.8rem;font-weight:600;margin-right:6px;background:var(--red-soft);color:var(--red)}
+  .pill.ok{background:transparent;border:1px solid var(--ok);color:var(--ok)}
+
+  /* timeline */
+  .timeline{border-left:2px solid var(--line-strong);margin-left:8px;padding-left:0;list-style:none}
+  .timeline li{position:relative;padding:0 0 22px 26px}
+  .timeline li::before{
+    content:"";position:absolute;left:-7px;top:7px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--red);
+  }
+  .timeline .d{font-family:"IBM Plex Mono",monospace;font-size:.82rem;font-weight:600;color:var(--red)}
+  .timeline h3{margin:2px 0 3px;font-size:1rem}
+  .timeline p{margin:0;color:var(--ink-2);font-size:.93rem;max-width:64ch}
+  .timeline p.cn{color:var(--ink-3);font-size:.86rem}
+
+  /* links */
+  .link-list{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:680px){.link-list{grid-template-columns:1fr 1fr}}
+  .link-card{
+    display:flex;gap:14px;align-items:flex-start;text-decoration:none;color:var(--ink);
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;
+  }
+  .link-card:hover{border-color:var(--red)}
+  .link-card .ic{
+    flex:0 0 40px;width:40px;height:40px;border-radius:9px;background:var(--surface-2);
+    border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+    font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:.8rem;color:var(--red);
+  }
+  .link-card h3{margin:0 0 2px;font-size:.98rem}
+  .link-card p{margin:0;font-size:.85rem;color:var(--ink-3);word-break:break-all}
+  .link-card .arr{margin-left:auto;color:var(--ink-3);font-size:1.1rem;padding-top:2px}
+
+  /* mini copy rows */
+  .mini-addr{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:10px 12px;margin-top:12px;
+  }
+  .mini-addr code{font-family:"IBM Plex Mono",monospace;font-size:.8rem;word-break:break-all;flex:1 1 240px}
+  .mini-addr button{
+    cursor:pointer;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+    border-radius:7px;font:inherit;font-size:.82rem;font-weight:600;padding:6px 14px;
+  }
+
+  /* risk */
+  .risk{
+    border:1px solid var(--red);border-radius:var(--radius);
+    background:var(--surface);padding:22px;
+  }
+  .risk h2{font-family:"Newsreader",Georgia,serif;font-size:1.35rem;margin:0 0 10px;color:var(--red)}
+  .risk ul{margin:0;padding-left:20px;color:var(--ink-2);font-size:.94rem}
+  .risk li{margin-bottom:7px}
+  .risk .cn-block{margin-top:14px;border-top:1px dashed var(--line-strong);padding-top:12px;color:var(--ink-3);font-size:.9rem}
+
+  footer{margin-top:52px;background:var(--navy);color:var(--navy-ink);padding:30px 0 38px}
+  footer .f-grid{display:flex;flex-wrap:wrap;gap:14px 34px;justify-content:space-between;align-items:flex-start}
+  footer .mono{font-family:"IBM Plex Mono",monospace;font-size:.78rem;word-break:break-all;opacity:.85}
+  footer p{font-size:.84rem;opacity:.75;max-width:60ch;margin:6px 0 0}
+  footer a{color:#f0c9a0}
+  .toast{
+    position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(80px);
+    background:var(--navy);color:#fff;padding:11px 22px;border-radius:999px;
+    font-size:.9rem;font-weight:600;opacity:0;transition:all .25s ease;pointer-events:none;z-index:50;
+    box-shadow:0 8px 24px rgba(0,0,0,.3);max-width:92vw;text-align:center;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .toast{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topstrip">
+  <div class="wrap">
+    <span class="mono">BASE CHAIN · ERC-20 · EST. OCT 2, 2026</span>
+    <span><a href="https://x.com/ypliu18" target="_blank" rel="noopener">X · @ypliu18 ↗</a></span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="seal-row">
+          <div class="seal" aria-hidden="true">
+            <span class="s1">US·CN</span>
+            <span class="s2">EST 2026</span>
+            <span class="s3">五十二万亿</span>
+          </div>
+          <div class="chain-badges">
+            <span class="badge"><span class="dot"></span>Base Mainnet</span>
+            <span class="badge">ERC-20 · OpenZeppelin</span>
+            <span class="badge red">LP 100% Locked</span>
+          </div>
+        </div>
+
+        <h1>USCHINA —<br />an experiment,<br /><span class="accent">not a promise.</span></h1>
+        <p class="hero-cn">USCHINA —— 一场实验，不是一个承诺。</p>
+
+        <p class="lede">USCHINA is a story-driven meme coin on Base. Its total supply is <strong>52 trillion</strong> — a round number for the combined nominal GDP of China and the United States (~$52.3 trillion). Even its liquidity pool is dated like a treaty: the numbers 1844, 703, 34, 5 and 12 are all borrowed from the 1844 Treaty of Wanghia.</p>
+        <p class="lede-cn">USCHINA 是 Base 链上的一枚叙事型代币。总供应量 52 万亿，取自中美两国名义 GDP 之和（约 52.3 万亿美元）；连流动性池的数字都带着日期——1844、703、34、5、12，全部来自 1844 年《望厦条约》。</p>
+
+        <div class="contract-box">
+          <label for="contractAddr">Official Contract Address · 官方合约地址</label>
+          <div class="addr-row">
+            <div class="addr" id="contractAddr">0xe12a1B0BD601Cf793a0195ff65e9Ef425e983254</div>
+            <button class="copy-btn" type="button" data-copy="0xe12a1B0BD601Cf793a0195ff65e9Ef425e983254">Copy · 复制</button>
+          </div>
+          <p class="copy-note"><strong>Anti-scam:</strong> tokens with the same name or symbol are fakes. This address is the only real USCHINA. · <strong>防假币：</strong>同名同符号的都是假币，只认这一个地址。</p>
+        </div>
+      </div>
+
+      <aside class="snapshot" aria-label="Market snapshot">
+        <h2>Market Snapshot · 行情快照</h2>
+        <p class="snap-date">As recorded on Dexscreener · 数据日期：2026 年 11 月 23 日（收录当日快照，非实时行情）</p>
+        <div class="snap-grid">
+          <div class="snap-item"><div class="k">Price 价格</div><div class="v">$0.000000000001925</div></div>
+          <div class="snap-item"><div class="k">Liquidity 流动性</div><div class="v">$32.34</div></div>
+          <div class="snap-item"><div class="k">Market Cap 市值</div><div class="v">$100</div></div>
+          <div class="snap-item"><div class="k">First Trade 首笔交易</div><div class="v">0.0005 ETH<small>→ 471,986,022,939.45 USCHINA · Nov 23, 2026</small></div></div>
+        </div>
+        <p class="snap-foot">Dexscreener listed USCHINA about 30 minutes after the pool's first-ever trade. The pool is tiny — expect extreme price swings on small orders. Live data: <a href="https://dexscreener.com/base/0xe12a1B0BD601Cf793a0195ff65e9Ef425e983254" target="_blank" rel="noopener">Dexscreener ↗</a></p>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 01 STORY -->
+  <section id="story">
+    <div class="sec-head">
+      <span class="num">01 / THE STORY</span>
+      <h2>The numbers tell the story</h2>
+      <span class="cn">数字即叙事</span>
+      <p>Most meme coins pick a supply at random. USCHINA's numbers were chosen one by one — each one points at a date, a treaty, or an economy.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <span class="tag">Total Supply · 总量</span>
+        <div class="big">52,000,000,000,000</div>
+        <p><strong>52 trillion tokens.</strong> The combined nominal GDP of China and the US is roughly $52.3 trillion — rounded down to 52 trillion, and minted once, in full, on October 2, 2026. There will never be more.</p>
+        <p class="cn">52 万亿枚，对应中美名义 GDP 之和约 52.3 万亿美元，取整。2026 年 10 月 2 日一次铸完，永不增发。</p>
+      </article>
+      <article class="card">
+        <span class="tag">The Pool Opens · 建池</span>
+        <div class="big red">1844</div>
+        <p>On October 10, 2026, the USCHINA/WETH pool opened on Aerodrome with <strong>1.844 trillion USCHINA + 0.001844 WETH</strong> — a nod to <strong>1844</strong>, the year of the Treaty of Wanghia, the first treaty between China and the United States.</p>
+        <p class="cn">2026 年 10 月 10 日在 Aerodrome 建池：1.844 万亿枚 + 0.001844 WETH，致敬 1844 年中美第一份条约《望厦条约》。</p>
+      </article>
+      <article class="card">
+        <span class="tag">Signing Day · 签约日</span>
+        <div class="big red">7 · 03</div>
+        <p>The treaty was signed on <strong>July 3, 1844</strong>. On October 22, 2026, the pool was deepened by exactly <strong>7.03 trillion USCHINA + 0.00703 ETH</strong> — the "703 top-up" — so the signing date lives inside the pool's balance.</p>
+        <p class="cn">《望厦条约》签于 1844 年 7 月 3 日。2026 年 10 月 22 日按「703」加深池子：7.03 万亿枚 + 0.00703 ETH。</p>
+      </article>
+      <article class="card">
+        <span class="tag">The Relay · 接龙</span>
+        <div class="big">34 · 5 · 12</div>
+        <p>The treaty had <strong>34 articles</strong>, opened <strong>five ports</strong> to trade, and allowed revision after <strong>12 years</strong>. Those three numbers — 34, 5, 12 — are reserved as the amounts for future pool top-ups, in that order.</p>
+        <p class="cn">条约共 34 款、五口通商、12 年后可修约。这三个数字已定为后续加深池子的接龙数额，依次进行。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 02 TOKEN FACTS -->
+  <section id="facts">
+    <div class="sec-head">
+      <span class="num">02 / TOKEN FACTS</span>
+      <h2>Fixed rules, verified code</h2>
+      <span class="cn">规则固定，源码已验证</span>
+      <p>USCHINA uses the standard OpenZeppelin ERC-20 template, deployed via Remix and verified on Basescan (compiler v0.8.34, optimizer off, runs 200). Once deployed, the rules cannot be changed — not even by its creator.</p>
+    </div>
+    <div class="facts">
+      <div class="fact-row"><div class="fk">Token · 代币</div><div class="fv">Uschina (USCHINA)</div></div>
+      <div class="fact-row"><div class="fk">Chain · 链</div><div class="fv">Base (Ethereum L2)</div></div>
+      <div class="fact-row"><div class="fk">Contract · 合约</div><div class="fv"><span class="mono">0xe12a1B0BD601Cf793a0195ff65e9Ef425e983254</span></div></div>
+      <div class="fact-row"><div class="fk">Total Supply · 总量</div><div class="fv">52,000,000,000,000 USCHINA · 18 decimals</div></div>
+      <div class="fact-row"><div class="fk">Rules · 规则</div><div class="fv"><span class="pill">No mint 无增发</span><span class="pill">No burn 无销毁</span><span class="pill">No tax 无交易税</span><span class="pill ok">Source verified 源码已验证 ✓</span></div></div>
+      <div class="fact-row"><div class="fk">DEX · 交易所</div><div class="fv">Aerodrome — USCHINA/WETH, Basic Volatile pool, 0.3% fee</div></div>
+      <div class="fact-row"><div class="fk">Creator · 发行人</div><div class="fv">An independent individual experiment. No team, no company, no fundraising, no presale. · 个人实验，无团队、无公司、无募资、无预售。</div></div>
+    </div>
+  </section>
+
+  <!-- 03 POOL & LOCK -->
+  <section id="pool">
+    <div class="sec-head">
+      <span class="num">03 / POOL &amp; LOCK</span>
+      <h2>100% of LP locked until April 10, 2027</h2>
+      <span class="cn">LP 全部锁仓至 2027 年 4 月 10 日</span>
+      <p>Every LP token — all 280,620.52 of them — sits in Aerodrome/Velodrome's official V2Locker contract. Until the lock expires, the liquidity cannot be withdrawn by anyone, including the creator. That is verifiable on-chain, not a promise.</p>
+    </div>
+    <div class="cards three">
+      <article class="card">
+        <h3>Pool composition · 池子构成</h3>
+        <p>After the first trade (Nov 23, 2026):</p>
+        <p style="margin-top:8px"><strong class="mono" style="font-family:'IBM Plex Mono',monospace">0.0093725 WETH</strong><br /><strong class="mono" style="font-family:'IBM Plex Mono',monospace">8,402,013,977,060.55 USCHINA</strong></p>
+        <p class="cn">比例恒定：1 WETH ≈ 1000 万亿 USCHINA。池子小，小额买卖也会让价格大幅跳动。</p>
+      </article>
+      <article class="card">
+        <h3>The lock · 锁仓</h3>
+        <p><strong>280,620.52 LP tokens · 100% locked</strong></p>
+        <p>Locked until <strong>April 10, 2027</strong> in the official V2Locker. Owner: the deployer wallet. No early withdrawal is possible at the contract level.</p>
+        <p class="cn">280,620.52 枚 LP 全部锁定，到期前合约层面无法取出。</p>
+      </article>
+      <article class="card">
+        <h3>Deployer holdings · 储备</h3>
+        <p>After the first trade, the deployer wallet holds <strong>43,597,986,022,939.45 USCHINA</strong>, kept as reserve for the 34 · 5 · 12 relay top-ups. Balances change with gas and future top-ups — check Basescan for the live figure.</p>
+        <p class="cn">部署钱包留存约 43.6 万亿枚作战略储备，用于后续接龙加深；实时余额以 Basescan 为准。</p>
+      </article>
+    </div>
+
+    <div class="mini-addr">
+      <code>Pool 池子：0xf24ce1d52e66336502b79ddcedc7e423793e4a18</code>
+      <button type="button" data-copy="0xf24ce1d52e66336502b79ddcedc7e423793e4a18">Copy 复制</button>
+    </div>
+    <div class="mini-addr">
+      <code>V2Locker 锁仓合约：0x3bE5CEa35A26e33E0652797FD72bd432E79f1d26</code>
+      <button type="button" data-copy="0x3bE5CEa35A26e33E0652797FD72bd432E79f1d26">Copy 复制</button>
+    </div>
+  </section>
+
+  <!-- 04 TIMELINE -->
+  <section id="timeline">
+    <div class="sec-head">
+      <span class="num">04 / EXPERIMENT LOG</span>
+      <h2>How it got here</h2>
+      <span class="cn">实验记录</span>
+    </div>
+    <ol class="timeline">
+      <li>
+        <span class="d">2026-10-02</span>
+        <h3>Deployed on Base</h3>
+        <p>Parameters set — Base chain, 52 trillion supply, 18 decimals — and the contract deployed via Remix. All 52 trillion minted to the deployer wallet.</p>
+        <p class="cn">定参数并在 Remix 完成部署，52 万亿全数铸给部署钱包。</p>
+      </li>
+      <li>
+        <span class="d">2026-10-10</span>
+        <h3>Source verified · Pool created</h3>
+        <p>Contract source verified on Basescan in the morning; the 1844 pool (1.844T + 0.001844 WETH) opened on Aerodrome the same day.</p>
+        <p class="cn">上午 Basescan 源码验证通过，下午 Aerodrome 建池（1844 致敬版）。</p>
+      </li>
+      <li>
+        <span class="d">2026-10-12</span>
+        <h3>Listed on GeckoTerminal</h3>
+        <p>The pool page went live on GeckoTerminal — the project's first market listing.</p>
+        <p class="cn">GeckoTerminal 收录池子页面。</p>
+      </li>
+      <li>
+        <span class="d">2026-10-22</span>
+        <h3>703 top-up · LP fully locked · Genesis thread</h3>
+        <p>Pool deepened by 7.03T + 0.00703 ETH; 100% of LP locked until April 10, 2027; the 9-post genesis thread published on X (@ypliu18).</p>
+        <p class="cn">703 加深完成，LP 100% 锁至 2027-04-10，创世推文（9 条）在 X 发布。</p>
+      </li>
+      <li>
+        <span class="d">2026-11-23</span>
+        <h3>First-ever trade · Dexscreener listing</h3>
+        <p>The pool's first real trade: 0.0005 ETH bought 471,986,022,939.45 USCHINA — openly the creator's own buy, made to activate indexing. Dexscreener listed the pool about 30 minutes later.</p>
+        <p class="cn">池子有史以来第一笔交易（发行人自购，如实说明），约半小时后 Dexscreener 收录。</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 05 VERIFY -->
+  <section id="verify">
+    <div class="sec-head">
+      <span class="num">05 / VERIFY EVERYTHING</span>
+      <h2>Don't trust — verify</h2>
+      <span class="cn">不要相信，去核对</span>
+      <p>Every claim on this page can be checked on-chain or on the market pages below. If a number here ever disagrees with Basescan, Basescan is right.</p>
+    </div>
+    <div class="link-list">
+      <a class="link-card" href="https://basescan.org/token/0xe12a1B0BD601Cf793a0195ff65e9Ef425e983254" target="_blank" rel="noopener">
+        <span class="ic">BS</span>
+        <span><h3>Basescan — Contract</h3><p>Verified source, holders, transfers · basescan.org</p></span>
+        <span class="arr">↗</span>
+      </a>
+      <a class="link-card" href="https://dexscreener.com/base/0xe12a1B0BD601Cf793a0195ff65e9Ef425e983254" target="_blank" rel="noopener">
+        <span class="ic">DX</span>
+        <span><h3>Dexscreener — Market</h3><p>Price, liquidity, trades · dexscreener.com</p></span>
+        <span class="arr">↗</span>
+      </a>
+      <a class="link-card" href="https://www.geckoterminal.com/base/pools/0xf24ce1d52e66336502b79ddcedc7e423793e4a18" target="_blank" rel="noopener">
+        <span class="ic">GT</span>
+        <span><h3>GeckoTerminal — Pool</h3><p>Pool chart and history · geckoterminal.com</p></span>
+        <span class="arr">↗</span>
+      </a>
+      <a class="link-card" href="https://aerodrome.finance" target="_blank" rel="noopener">
+        <span class="ic">AE</span>
+        <span><h3>Aerodrome — Trade</h3><p>Swap USCHINA/WETH on Base · aerodrome.finance — always paste the contract address to avoid fakes</p></span>
+        <span class="arr">↗</span>
+      </a>
+      <a class="link-card" href="https://x.com/ypliu18" target="_blank" rel="noopener">
+        <span class="ic">X</span>
+        <span><h3>X — @ypliu18</h3><p>The experiment log, posted as it happens · x.com/ypliu18</p></span>
+        <span class="arr">↗</span>
+      </a>
+      <a class="link-card" href="https://x.com/ypliu18/status/2113283201179558051" target="_blank" rel="noopener">
+        <span class="ic">✎</span>
+        <span><h3>Genesis Thread</h3><p>The original 9-post announcement, Oct 22, 2026 · x.com</p></span>
+        <span class="arr">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 06 RISK -->
+  <section id="risk">
+    <div class="risk">
+      <h2>Read this before anything else · 先读风险提示</h2>
+      <ul>
+        <li><strong>An experiment, not an investment.</strong> USCHINA is a personal, story-driven experiment. Nothing on this page is financial advice, and nothing here promises returns.</li>
+        <li><strong>The pool is tiny.</strong> Liquidity was about $32 at listing. Small orders move the price violently; you can lose most or all of what you put in.</li>
+        <li><strong>No team, no roadmap promises.</strong> There is no company behind USCHINA, no fundraising, and no obligation for anyone to keep building, buying, or providing liquidity after the lock expires on April 10, 2027.</li>
+        <li><strong>Beware of fakes.</strong> Only the contract address above is real. Anyone promising profits, running a "USCHINA presale," or asking for your seed phrase is a scammer.</li>
+      </ul>
+      <div class="cn-block">
+        中文说明：USCHINA 是一个个人叙事实验，不是投资品，本页不构成任何投资建议，也不承诺收益。池子流动性极小（收录时约 32 美元），价格波动剧烈，投入可能全部损失。项目无团队、无公司、无募资；锁仓于 2027 年 4 月 10 日到期后，无人有义务继续建设或提供流动性。只认合约地址，凡承诺收益、搞「预售」、索要助记词的，都是骗局。
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <strong style="font-family:'Newsreader',serif;font-size:1.15rem">USCHINA</strong>
+        <p>A story-driven experiment on Base. An experiment, not a promise.<br />一场写在数字里的实验。实验而已，不是承诺。</p>
+      </div>
+      <div>
+        <div class="mono">CONTRACT<br />0xe12a1B0BD601Cf793a0195ff65e9Ef425e983254</div>
+        <p><a href="https://x.com/ypliu18" target="_blank" rel="noopener">X · @ypliu18 ↗</a> &nbsp;·&nbsp; Snapshot date 数据日期：Nov 23, 2026</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">Copied · 已复制</div>
+
+<script>
+(function(){
+  var toast = document.getElementById('toast');
+  var timer = null;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    if(timer) clearTimeout(timer);
+    timer = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+  }
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly','');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e){ ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+  document.addEventListener('click', function(ev){
+    var btn = ev.target.closest ? ev.target.closest('[data-copy]') : null;
+    if(!btn) return;
+    var text = btn.getAttribute('data-copy');
+    function done(ok){
+      showToast(ok ? 'Copied · 地址已复制 ✓' : text);
+      if(!ok){ /* toast shows the address itself so it can be copied by hand */ }
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(fallbackCopy(text)); });
+    } else {
+      done(fallbackCopy(text));
+    }
+  });
+})();
+</script>
+</body>
+</html>
